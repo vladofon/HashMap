@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="Comparable.h" />
     <ClInclude Include="HashMap.h" />
+    <ClInclude Include="Long.h" />
     <ClInclude Include="Map.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

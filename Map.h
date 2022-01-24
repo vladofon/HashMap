@@ -8,5 +8,5 @@ class Map
 public:
 	virtual void put(K key, V value) = 0;
 
-	virtual void get(K key) = 0;
+	virtual V get(K* key) = 0;
 };
