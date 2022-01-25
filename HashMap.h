@@ -76,6 +76,8 @@ public:
 		return hash & (length - 1);
 	}
 
+
+
 private:
 	class Node
 	{
@@ -107,7 +109,22 @@ private:
 
 	Node** table;
 
+	void increaseSize()
+	{
+		this->capacity = capacity * 2;
+		this->threshold = capacity * loadFactor;
+	}
 
+	void resize()
+	{
+		if (size >= threshold)
+		{
+			increaseSize();
+			Node** newTable = new Node * [capacity];
+
+			// need Entry[] implementation for rehash table
+		}
+	}
 
 
 };
