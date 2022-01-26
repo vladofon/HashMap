@@ -32,5 +32,14 @@
     <ClInclude Include="Long.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Entry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

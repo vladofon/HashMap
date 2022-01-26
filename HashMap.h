@@ -1,5 +1,7 @@
 #pragma once
 #include "Map.h"
+#include"List.h"
+#include"LinkedList.h"
 
 template<class K, class V>
 class HashMap : public Map<K, V>
@@ -13,9 +15,11 @@ public:
 		this->threshold = capacity * loadFactor;
 		this->size = 0;
 
-		this->table = new Node*[capacity];
-		for (long i = 0; i < capacity; ++i)
-			table[i] = nullptr;
+		this->table = new LinkedList<Entry<K,V>>[capacity];
+		for (long i = 0; i < capacity; i++)
+		{
+			table[i] = LinkedList<Entry<K, V>>();
+		}
 	}
 
 	void put(K key, V value) override
@@ -23,21 +27,7 @@ public:
 		long hashCode = hash(key.hashCode());
 		long index = indexFor(hashCode, capacity);
 
-		if (table[index] == nullptr)
-		{
-			table[index] = new Node(key, value, hashCode);
-		}
-		else 
-		{
-			Node* current = table[index];
-
-			while (current->pNext != nullptr)
-			{
-				current = current->pNext;
-			}
-
-			current->pNext = new Node(key, value, hashCode);
-		}	
+		table[index].add(Entry<K,V>(key, value, hashCode));
 	}
 
 	V get(K* key) override 
@@ -45,20 +35,15 @@ public:
 		long hashCode = hash(key->hashCode());
 		long index = indexFor(hashCode, capacity);
 
-		Node* current = table[index];
-
-		if (current->pNext == nullptr && current != nullptr)
+		if (table[index].getSize() != 0)
 		{
-			return current->value;
-		}
-		while (current->pNext != nullptr)
-		{
-			if (current->key.equals(key))
+			for (long i = 0; i < table[index].getSize(); i++)
 			{
-				return current->value;
+				if (table[index].get(i).getKey().equals(key))
+				{
+					return table[index].get(i).getValue();
+				}
 			}
-
-			current = current->pNext;
 		}
 
 		return V();
@@ -79,25 +64,39 @@ public:
 
 
 private:
-	class Node
+	template<class K, class V>
+	class Entry
 	{
 	public:
-		Node* pNext;
 		K key;
 		V value;
 
 		long hash;
 
-		Node(K key, V value, long hash, Node* pNext = nullptr)
+		Entry(K key, V value, long hash)
 		{
 			this->key = key;
 			this->value = value;
 			this->hash = hash;
-			this->pNext = pNext;
 		}
 
-		Node() {
+		Entry() {
 			// Empty constructor for dynamic array
+		}
+
+		K getKey()
+		{
+			return this->key;
+		}
+
+		V getValue()
+		{
+			return this->value;
+		}
+
+		long getHash()
+		{
+			return this->hash;
 		}
 	};
 
@@ -107,7 +106,7 @@ private:
 	long capacity;
 	long size;
 
-	Node** table;
+	LinkedList<Entry<K,V>>* table;
 
 	void increaseSize()
 	{
@@ -119,8 +118,8 @@ private:
 	{
 		if (size >= threshold)
 		{
-			increaseSize();
-			Node** newTable = new Node * [capacity];
+			/*increaseSize();
+			Node** newTable = new Node * [capacity];*/
 
 			// need Entry[] implementation for rehash table
 		}

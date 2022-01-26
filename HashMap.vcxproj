@@ -152,7 +152,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Comparable.h" />
+    <ClInclude Include="Entry.h" />
     <ClInclude Include="HashMap.h" />
+    <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="Long.h" />
     <ClInclude Include="Map.h" />
   </ItemGroup>
