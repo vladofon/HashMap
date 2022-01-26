@@ -15,11 +15,13 @@ public:
 		this->threshold = capacity * loadFactor;
 		this->size = 0;
 
-		this->table = new LinkedList<Entry<K,V>>[capacity];
+		this->table = new LinkedList<Entry<K, V>>[capacity];
 		for (long i = 0; i < capacity; i++)
 		{
 			table[i] = LinkedList<Entry<K, V>>();
 		}
+
+		this->entryList = LinkedList<Entry<K, V>>();
 	}
 
 	void put(K key, V value) override
@@ -27,10 +29,12 @@ public:
 		long hashCode = hash(key.hashCode());
 		long index = indexFor(hashCode, capacity);
 
-		table[index].add(Entry<K,V>(key, value, hashCode));
+		table[index].add(Entry<K, V>(key, value, hashCode));
+
+		entryList.add(Entry<K, V>(key, value, hashCode));
 	}
 
-	V get(K* key) override 
+	V get(K* key) override
 	{
 		long hashCode = hash(key->hashCode());
 		long index = indexFor(hashCode, capacity);
@@ -49,19 +53,38 @@ public:
 		return V();
 	}
 
-	static long hash(long h)
+	LinkedList<Entry<K, V>> entryList()
 	{
-		unsigned long hash = h;
-		hash ^= (h >> 20) ^ (h >> 12);
-		return h ^ (h >> 7) ^ (h >> 4);
+		return entryList;
 	}
 
-	static long indexFor(long hash, long length)
+	LinkedList<V> values()
 	{
-		return hash & (length - 1);
+		LinkedList<V> mapValues = LinkedList<V>();
+
+		long counter = 0;
+
+		while (counter != entryList.getSize())
+		{
+			mapValues.add(entryList.get(counter).getValue());
+		}
+
+		return mapValues;
+	}	
+	
+	LinkedList<V> keyList()
+	{
+		LinkedList<V> mapKeys = LinkedList<V>();
+
+		long counter = 0;
+
+		while (counter != entryList.getSize())
+		{
+			mapValues.add(entryList.get(counter).getKey());
+		}
+
+		return mapKeys;
 	}
-
-
 
 private:
 	template<class K, class V>
@@ -106,7 +129,21 @@ private:
 	long capacity;
 	long size;
 
-	LinkedList<Entry<K,V>>* table;
+	LinkedList<Entry<K, V>>* table;
+	LinkedList<Entry<K, V>> entryList;
+
+	static long hash(long h)
+	{
+		unsigned long hash = h;
+		hash ^= (h >> 20) ^ (h >> 12);
+		return h ^ (h >> 7) ^ (h >> 4);
+	}
+
+	static long indexFor(long hash, long length)
+	{
+		return hash & (length - 1);
+	}
+
 
 	void increaseSize()
 	{
