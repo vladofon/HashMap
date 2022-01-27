@@ -12,15 +12,15 @@ public:
         this->size = 0;
     }
 
-    LinkedList(const LinkedList<T>& obj)
-    {
-        long counter = 0;
+    //LinkedList(const LinkedList<T>& obj)
+    //{
+    //    long counter = 0;
 
-        while (counter != obj.getSize())
-        {
-            add(obj.get(counter));
-        }
-    }
+    //    while (counter != obj.getSize())
+    //    {
+    //        add(obj.get(counter));
+    //    }
+    //}
 
     void add(T item) override
     {

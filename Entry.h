@@ -1,42 +1,37 @@
 #pragma once
-#include"List.h"
-#include"LinkedList.h"
 
 template<class K, class V>
 class Entry
 {
-	class Node
+public:
+	K key;
+	V value;
+
+	long hash;
+
+	Entry(K key, V value, long hash)
 	{
-	public:
-		K key;
-		V value;
+		this->key = key;
+		this->value = value;
+		this->hash = hash;
+	}
 
-		long hash;
+	Entry() {
+		// Empty constructor for dynamic array
+	}
 
-		Node(K key, V value, long hash)
-		{
-			this->key = key;
-			this->value = value;
-			this->hash = hash;
-		}
+	K getKey()
+	{
+		return this->key;
+	}
 
-		Node() {
-			// Empty constructor for dynamic array
-		}
+	V getValue()
+	{
+		return this->value;
+	}
 
-		K getKey()
-		{
-			return this->key();
-		}
-
-		V getValue()
-		{
-			return this->value;
-		}
-
-		long getHash()
-		{
-			return this->hash;
-		}
-	};
+	long getHash()
+	{
+		return this->hash;
+	}
 };

@@ -39,7 +39,35 @@ int main()
 
     Map<Long, Long>* map = new HashMap<Long, Long>();
 
-    map->put(*firstNumber, *secondNumber);
+    map->put(*firstNumber, *firstNumber);
     cout<<map->get(firstNumber).data<<endl;
+    
+    map->put(*secondNumber, *secondNumber);
+    cout<<map->get(secondNumber).data<<endl;
+
+    map->put(*thirdNumber, *thirdNumber);
+    cout<<map->get(thirdNumber).data<<endl;
+
+    LinkedList<Entry<Long, Long>> entry = map->entrySet();
+    LinkedList<Long> keys = map->keyList();
+    LinkedList<Long> values = map->values();
+
+    cout << "______________________" << endl;
+    for (long i = 0; i < entry.getSize(); i++)
+    {
+        cout << entry.get(i).getHash() << endl;
+    }
+    cout << "______________________" << endl;
+    cout << "________keys__________" << endl;
+    for (long i = 0; i < keys.getSize(); i++)
+    {
+        cout << keys.get(i).data << endl;
+    }    
+    cout << "______________________" << endl;
+    cout << "________values________" << endl;
+    for (long i = 0; i < values.getSize(); i++)
+    {
+        cout << values.get(i).data << endl;
+    }
 }
 

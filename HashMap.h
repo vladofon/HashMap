@@ -2,6 +2,7 @@
 #include "Map.h"
 #include"List.h"
 #include"LinkedList.h"
+#include"Entry.h"
 
 template<class K, class V>
 class HashMap : public Map<K, V>
@@ -53,7 +54,7 @@ public:
 		return V();
 	}
 
-	LinkedList<Entry<K, V>> entryList()
+	LinkedList<Entry<K, V>> entrySet()
 	{
 		return entryList;
 	}
@@ -72,56 +73,21 @@ public:
 		return mapValues;
 	}	
 	
-	LinkedList<V> keyList()
+	LinkedList<K> keyList()
 	{
-		LinkedList<V> mapKeys = LinkedList<V>();
+		LinkedList<K> mapKeys = LinkedList<K>();
 
 		long counter = 0;
 
 		while (counter != entryList.getSize())
 		{
-			mapValues.add(entryList.get(counter).getKey());
+			mapKeys.add(entryList.get(counter).getKey());
 		}
 
 		return mapKeys;
 	}
 
 private:
-	template<class K, class V>
-	class Entry
-	{
-	public:
-		K key;
-		V value;
-
-		long hash;
-
-		Entry(K key, V value, long hash)
-		{
-			this->key = key;
-			this->value = value;
-			this->hash = hash;
-		}
-
-		Entry() {
-			// Empty constructor for dynamic array
-		}
-
-		K getKey()
-		{
-			return this->key;
-		}
-
-		V getValue()
-		{
-			return this->value;
-		}
-
-		long getHash()
-		{
-			return this->hash;
-		}
-	};
 
 	long initialCapacity;
 	double loadFactor;
