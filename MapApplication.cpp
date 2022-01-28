@@ -36,6 +36,7 @@ int main()
     Long* firstNumber = new Long(10);
     Long* secondNumber = new Long(21);
     Long* thirdNumber = new Long(100000);
+    Long* fourthNumber = new Long(4545);
 
     Map<Long, Long>* map = new HashMap<Long, Long>();
 
@@ -69,5 +70,18 @@ int main()
     {
         cout << values->get(i).data << endl;
     }
+    cout << "______________________" << endl;
+    cout << map->containsKey(firstNumber) << endl;
+    cout << map->containsKey(secondNumber) << endl;
+    cout << map->containsKey(thirdNumber) << endl;
+    cout << map->containsKey(fourthNumber) << endl;    
+
+    map->put(Long(68), Long(45));
+    
+    cout << "______________________" << endl;
+    cout << map->containsValue(firstNumber) << endl;
+    cout << map->containsValue(secondNumber) << endl;
+    cout << map->containsValue(thirdNumber) << endl;
+    cout << map->containsValue(new Long(45)) << endl;
 }
 

@@ -59,6 +59,43 @@ public:
 		return entryList;
 	}
 
+	bool containsKey(K* key)
+	{
+		long hashCode = hash(key->hashCode());
+		long index = indexFor(hashCode, capacity);
+
+		long counter = 0;
+
+		while (counter != table[index].getSize())
+		{
+			if (table[index].get(counter).getKey().equals(key))
+			{
+				return true;
+			}
+
+			counter++;
+		}
+
+		return false;
+	}	
+	
+	bool containsValue(V* value)
+	{
+		long counter = 0;
+
+		while (counter != entryList->getSize())
+		{
+			if (entryList->get(counter).getValue().equals(value))
+			{
+				return true;
+			}
+
+			counter++;
+		}
+
+		return false;
+	}
+
 	List<V>* values()
 	{
 		LinkedList<V>* mapValues = new LinkedList<V>();

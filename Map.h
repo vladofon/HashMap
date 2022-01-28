@@ -16,4 +16,8 @@ public:
 	virtual List<V>* values() = 0;
 
 	virtual List<K>* keyList() = 0;
+
+	virtual bool containsKey(K* key) = 0;
+
+	virtual bool containsValue(V* value) = 0;
 };
