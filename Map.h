@@ -11,9 +11,9 @@ public:
 
 	virtual V get(K* key) = 0;
 
-	virtual LinkedList<Entry<K, V>> entrySet() = 0;
+	virtual List<Entry<K, V>>* entrySet() = 0;
 
-	virtual LinkedList<V> values() = 0;
+	virtual List<V>* values() = 0;
 
-	virtual LinkedList<K> keyList() = 0;
+	virtual List<K>* keyList() = 0;
 };

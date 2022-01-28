@@ -22,7 +22,7 @@ public:
 			table[i] = LinkedList<Entry<K, V>>();
 		}
 
-		this->entryList = LinkedList<Entry<K, V>>();
+		this->entryList = new LinkedList<Entry<K, V>>();
 	}
 
 	void put(K key, V value) override
@@ -32,7 +32,7 @@ public:
 
 		table[index].add(Entry<K, V>(key, value, hashCode));
 
-		entryList.add(Entry<K, V>(key, value, hashCode));
+		entryList->add(Entry<K, V>(key, value, hashCode));
 	}
 
 	V get(K* key) override
@@ -54,34 +54,36 @@ public:
 		return V();
 	}
 
-	LinkedList<Entry<K, V>> entrySet()
+	List<Entry<K, V>>* entrySet()
 	{
 		return entryList;
 	}
 
-	LinkedList<V> values()
+	List<V>* values()
 	{
-		LinkedList<V> mapValues = LinkedList<V>();
+		LinkedList<V>* mapValues = new LinkedList<V>();
 
 		long counter = 0;
 
-		while (counter != entryList.getSize())
+		while (counter != entryList->getSize())
 		{
-			mapValues.add(entryList.get(counter).getValue());
+			mapValues->add(entryList->get(counter).getValue());
+			counter++;
 		}
 
 		return mapValues;
 	}	
 	
-	LinkedList<K> keyList()
+	List<K>* keyList()
 	{
-		LinkedList<K> mapKeys = LinkedList<K>();
+		List<K>* mapKeys = new LinkedList<K>();
 
 		long counter = 0;
 
-		while (counter != entryList.getSize())
+		while (counter != entryList->getSize())
 		{
-			mapKeys.add(entryList.get(counter).getKey());
+			mapKeys->add(entryList->get(counter).getKey());
+			counter++;
 		}
 
 		return mapKeys;
@@ -96,7 +98,7 @@ private:
 	long size;
 
 	LinkedList<Entry<K, V>>* table;
-	LinkedList<Entry<K, V>> entryList;
+	List<Entry<K, V>>* entryList;
 
 	static long hash(long h)
 	{

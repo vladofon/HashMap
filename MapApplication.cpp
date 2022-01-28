@@ -48,26 +48,26 @@ int main()
     map->put(*thirdNumber, *thirdNumber);
     cout<<map->get(thirdNumber).data<<endl;
 
-    LinkedList<Entry<Long, Long>> entry = map->entrySet();
-    LinkedList<Long> keys = map->keyList();
-    LinkedList<Long> values = map->values();
+    List<Entry<Long, Long>> *entry = map->entrySet();
+    List<Long>* keys = map->keyList();
+    List<Long>* values = map->values();
 
     cout << "______________________" << endl;
-    for (long i = 0; i < entry.getSize(); i++)
+    for (long i = 0; i < entry->getSize(); i++)
     {
-        cout << entry.get(i).getHash() << endl;
+        cout << entry->get(i).getHash() << endl;
     }
     cout << "______________________" << endl;
     cout << "________keys__________" << endl;
-    for (long i = 0; i < keys.getSize(); i++)
+    for (long i = 0; i < keys->getSize(); i++)
     {
-        cout << keys.get(i).data << endl;
+        cout << keys->get(i).data << endl;
     }    
     cout << "______________________" << endl;
     cout << "________values________" << endl;
-    for (long i = 0; i < values.getSize(); i++)
+    for (long i = 0; i < values->getSize(); i++)
     {
-        cout << values.get(i).data << endl;
+        cout << values->get(i).data << endl;
     }
 }
 
