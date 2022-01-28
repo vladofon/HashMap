@@ -40,6 +40,29 @@ int main()
 
     Map<Long, Long>* map = new HashMap<Long, Long>();
 
+    map->put(Long(6833), Long(45));
+    map->put(Long(686), Long(45));
+    map->put(Long(658), Long(45));
+    map->put(Long(468), Long(45));
+    map->put(Long(668), Long(45));
+    map->put(Long(6458), Long(45));
+    map->put(Long(63438), Long(45));
+    map->put(Long(683453), Long(45));
+    map->put(Long(62338), Long(45));
+    map->put(Long(223468), Long(45));
+    map->put(Long(45468), Long(45));
+    map->put(Long(6458), Long(45));
+    map->put(Long(65668), Long(45));
+    map->put(Long(66578), Long(45));
+    map->put(Long(68378), Long(45));
+    map->put(Long(689898), Long(45));
+    map->put(Long(5566), Long(45));
+    map->put(Long(567), Long(45));
+    map->put(Long(45456), Long(45));
+    map->put(Long(7868), Long(45));
+    map->put(Long(8989), Long(45));
+    map->put(Long(56789), Long(45));
+
     map->put(*firstNumber, *firstNumber);
     cout<<map->get(firstNumber).data<<endl;
     
@@ -75,8 +98,6 @@ int main()
     cout << map->containsKey(secondNumber) << endl;
     cout << map->containsKey(thirdNumber) << endl;
     cout << map->containsKey(fourthNumber) << endl;    
-
-    map->put(Long(68), Long(45));
     
     cout << "______________________" << endl;
     cout << map->containsValue(firstNumber) << endl;

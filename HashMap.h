@@ -33,6 +33,10 @@ public:
 		table[index].add(Entry<K, V>(key, value, hashCode));
 
 		entryList->add(Entry<K, V>(key, value, hashCode));
+
+		size++;
+
+		resize();
 	}
 
 	V get(K* key) override
@@ -160,10 +164,17 @@ private:
 	{
 		if (size >= threshold)
 		{
-			/*increaseSize();
-			Node** newTable = new Node * [capacity];*/
+			increaseSize();
 
-			// need Entry[] implementation for rehash table
+			this->table = new LinkedList<Entry<K, V>>[capacity];
+
+			for (long i = 0; i < size; i++)
+			{
+				long hashCode = hash(entryList->get(i).getKey().hashCode());
+				long index = indexFor(hashCode, capacity);
+
+				table[index].add(entryList->get(i));
+			}
 		}
 	}
 
